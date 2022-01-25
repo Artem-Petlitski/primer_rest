@@ -1,0 +1,326 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Touché</title>
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Favicons
+    ================================================== -->
+<link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+<link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+<link rel="apple-touch-icon" sizes="72x72" href="{% static 'img/apple-touch-icon-72x72.png' %}">
+<link rel="apple-touch-icon" sizes="114x114" href="{% static 'img/apple-touch-icon-114x114.png' %}">
+
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css"  href="{% static 'css/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome/css/font-awesome.css' %}">
+
+<!-- Stylesheet
+    ================================================== -->
+<link rel="stylesheet" type="text/css"  href="{% static 'css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/nivo-lightbox/nivo-lightbox.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/nivo-lightbox/default.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="{% static 'https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js' %}"></script>
+      <script src="{% static 'https://oss.maxcdn.com/respond/1.4.2/respond.min.js' %}"></script>
+    <![endif]-->
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<!-- Navigation
+    ==========================================-->
+<nav id="menu" class="navbar navbar-default navbar-fixed-top">
+  <div class="container"> 
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+      <a class="navbar-brand page-scroll" href="#page-top">Touché</a> </div>
+    
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#about" class="page-scroll">О нас</a></li>
+        <li><a href="#restaurant-menu" class="page-scroll">Меню</a></li>
+        <li><a href="#portfolio" class="page-scroll">Галерея</a></li>
+        <li><a href="#team" class="page-scroll">Наши шефы</a></li>
+        <li><a href="#call-reservation" class="page-scroll">Контакты</a></li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse --> 
+  </div>
+</nav>
+<!-- Header -->
+<header id="header">
+  <div class="intro">
+    <div class="overlay">
+      <div class="container">
+        <div class="row">
+          <div class="intro-text">
+            <h1>Touché</h1>
+            <p>Пиццерия / Кафе / Паб</p>
+            <a href="#about" class="btn btn-custom btn-lg page-scroll">Откройте для себя историю</a> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- About Section -->
+<div id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-6 ">
+        <div class="about-img"><img src="{% static 'img/about.jpg' %}" class="img-responsive" alt=""></div>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <div class="about-text">
+          <h2>Наша пиццерия</h2>
+          <hr>
+          <p>Touché – крупнейшая сеть пиццерий в Республике Беларусь:
+24 уютные пиццерии расположились в городе Минске, Гродно, Гомеле, Могилеве, Молодечно и Мозыре
+более 1 500 000 пицц ежегодно радуют наших Гостей в залах пиццерий и с доставкой</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Restaurant Menu Section -->
+<div id="restaurant-menu">
+  <div class="section-title text-center center">
+    <div class="overlay">
+      <h2>Меню</h2>
+      <hr>
+      <p>Ждем Вас в пиццериях Touché !.</p>
+    </div>
+  </div>
+  <div class="container">
+     {% for cat in category %}
+
+    <div class="row">
+
+
+      <div class="col-xs-12 col-sm-6">
+
+        <div class="menu-section">
+
+
+          <h2 class="menu-section-title">{{cat.name}}</h2>
+
+          <hr>
+    {% for dish in dishes %}
+       {% if dish.cat_id == cat.id %}
+          <div class="menu-item">
+
+            <div class="menu-item-name"> {{dish.title}} </div>
+            <div class="menu-item-price"> {{dish.price}} </div>
+            <div class="menu-item-description"> {{dish.description}} </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+
+
+        </div>
+
+      </div>
+
+      {% endfor %}
+
+
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<!-- Portfolio Section -->
+<div id="portfolio">
+  <div class="section-title text-center center">
+    <div class="overlay">
+      <h2>Галерея</h2>
+      <hr>
+
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="categories">
+        <ul class="cat">
+          <li>
+            <ol class="type">
+              <li><a href="#" data-filter="*" class="active">Всё меню</a></li>
+              <li><a href="#" data-filter=".6">Пиццы</a></li>
+              <li><a href="#" data-filter=".7">Напитки</a></li>
+
+            </ol>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="portfolio-items">
+        {% for dish in dishes %}
+        <div class="col-sm-6 col-md-4 col-lg-4 {{ dish.cat_id }}">
+
+          <div class="portfolio-item">
+
+            <div class="hover-bg"> <a href={{ dish.image }} title= {{dish.title}} data-lightbox-gallery="gallery1">
+              <div class="hover-text">
+                <h4>{{dish.title}}</h4>
+              </div>
+              <img src={{dish.image}} class="img-responsive" alt="Project Title"> </a> </div>
+          </div>
+        </div>
+        {% endfor  %}
+
+ Team Section
+<div id="team" class="text-center">
+  <div class="overlay">
+    <div class="container">
+      <div class="col-md-10 col-md-offset-1 section-title">
+        <h2>Познакомьтесь с нашими шефами</h2>
+        <hr>
+        <p>Гастрозвезды столицы, с которыми пора познакомиться поближе..</p>
+      </div>
+      <div id="row">
+        <div class="col-md-4 team">
+          <div class="thumbnail">
+            <div class="team-img"><img src="{% static 'img/team/01.jpeg' %}" alt="..."></div>
+            <div class="caption">
+              <h3>Максим Тарусин</h3>
+              <p>Максим Тарусин входит в десятку самых талантливых русских поваров: имея уникальный опыт стажировок на кухнях ресторанов от США до Китая и обучения во Франции у Алена Дюкасса, он умеет подать отечественные продукты в самом выгодном свете, а исконно русские рецепты — в новой авторской версии, более современной, емкой и изящной.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 team">
+          <div class="thumbnail">
+            <div class="team-img"><img src="{% static 'img/team/02.jpeg' %}" alt="..."></div>
+            <div class="caption">
+              <h3>Аркадий Грицевский</h3>
+              <p>Аркадий начал свою карьеру в ресторанном бизнесе в 1997 году, но через десять лет осознал, что его настоящее призвание — мир хлеба, заквасок, теста и муки. Грицевский прошел обучение на пиццайоло в самой сильной школе Италии в пригороде Венеции, коммуне Каорле Scuola Italiana Pizzaiolli</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 team">
+          <div class="thumbnail">
+            <div class="team-img"><img src="{% static 'img/team/03.jpeg' %}" alt="..."></div>
+            <div class="caption">
+              <h3>Евгений Викентьев</h3>
+              <p>Евгений — один из ярких представителей новой волны российских шефов. Он давно знаком петербуржской публике по проектам Hamlet+Jacks и «Винный шкаф» на Рубинштейна. Викентьев стажировался в лучших ресторанах Испании и Италии, а также на кухнях бара 41 Degrees Альберта Адриа и знаменитого ресторана в Ноли Il Vescovado, отмеченном звездой Мишлен..</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="call-reservation" class="text-center">
+  <div class="container">
+    <h2>Хотите забронировать? Звоните <strong>+375257265301</strong></h2>
+  </div>
+</div>
+<!-- Contact Section -->
+<div id="contact" class="text-center">
+  <div class="container">
+    <div class="section-title text-center">
+      <h2>Оставьте отзыв о нас</h2>
+       <div class="row">
+      <div class="col-xs-12 col-sm-6">
+      {% for na in ads %}
+      <hr>
+      <p>{{na.name}}
+                </p>
+      <p>{{na.message}}</p>
+      {% endfor %}
+          </div>
+        </div>
+    </div>
+    <div class="col-md-10 col-md-offset-1">
+      <form name="sentMessage" id="contactForm"  method="post">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-md-6">
+
+            <div class="form-group">
+              {{form.name}}
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              {{form.email}}
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          {{form.message}}
+        </div>
+        <div id="success"></div>
+        <button type="submit" class="btn btn-custom btn-lg">Отправить отзыв</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div id="footer">
+  <div class="container text-center">
+    <div class="col-md-4">
+      <h3>Адрес</h3>
+      <div class="contact-item">
+        <p>Республика Беларусб</p>
+        <p>Минск,улица Сурганова 47</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h3>Время работы</h3>
+      <div class="contact-item">
+        <p>Пн-Пт: 9:00  - 18:00 </p>
+        <p>Сб-Вс: 10:00  - 16:00 </p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h3>Контактная информация</h3>
+      <div class="contact-item">
+        <p>Телефон: +375336997029</p>
+        <p>Email: petliczkiy02@gmail.com</p>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid text-center copyrights">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="social">
+        <ul>
+          <li><a href="https://www.instagram.com/20_prosto_temka_01/"><i class="fa fa-instagram"></i></a></li>
+          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="https://vk.com/pppet9"><i class="fa fa-vk"></i></a></li>
+        </ul>
+      </div>
+      <p>&copy; 2022 Touché. All rights reserved. Designed by <a href="https://vk.com/pppet9" rel="nofollow">Artem_Petlitski</a></p>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="{% static 'js/jquery.1.11.1.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/SmoothScroll.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/nivo-lightbox.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.isotope.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jqBootstrapValidation.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
